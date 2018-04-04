@@ -1,0 +1,42 @@
+<form nz-form [formGroup]="login" id="form" (ngSubmit)="submit()">
+    <div class="title">
+        <p>天文航海训保通后台管理系统</p>
+    </div>
+    <div nz-form-item>
+        <nz-input 
+            formControlName="username" 
+            [(ngModel)]="username"
+            [nzPlaceHolder]="'账号'"
+            (ngModelChange)="inputRem('username')"
+            >
+            <ng-template #prefix>
+                <i class="anticon anticon-user"></i>
+            </ng-template>
+        </nz-input>
+
+    </div>
+    <div nz-form-item nz-form-control>
+        <nz-input 
+            formControlName="password" 
+            [(ngModel)]="password" [nzPlaceHolder]="'密码'" 
+            [nzType]="'password'"
+            (ngModelChange)="inputRem('password')"
+            >
+            <ng-template #prefix>
+                <i class="anticon anticon-lock"></i>
+            </ng-template>
+        </nz-input>
+    </div>
+    <div nz-form-item>
+       <nz-checkbox-group [ngModelOptions]="{standalone:true}" [(ngModel)]="checkboxArray" (ngModelChange)="remValue($event)"></nz-checkbox-group>
+    </div>
+    <div nz-form-item>
+        <button type="submit" nz-button [nzType]="'primary'" [nzLoading]="isLoading">登陆</button>
+    </div>
+</form>
+
+<nz-modal [nzVisible]="isModalVisible" [nzContent]="content" (nzOnOk)="modalOk()" [nzTitle]="'提示'">
+    <ng-template #content>
+        <p>{{modalContent}}</p>
+    </ng-template>
+</nz-modal>

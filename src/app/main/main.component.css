@@ -1,0 +1,27 @@
+:host{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: #ececec;
+}
+
+#form{
+    width: 30%;
+    background: white;
+    padding: 30px;
+    border-radius: 5px;
+    padding-bottom: 0px;
+    position: relative;
+}
+
+.title{
+    width: 120%;
+    top: -70px;
+    left: -10%;
+    font-size: 20pt;
+    text-align:center;
+    position: absolute;
+}

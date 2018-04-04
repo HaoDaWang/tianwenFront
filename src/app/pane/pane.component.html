@@ -1,0 +1,47 @@
+<nz-layout class="full">
+    <!-- 侧边栏 -->
+    <nz-sider class="sider" nzCollapsible [(nzCollapsed)]="isCollapsed">
+        <div class="logo">
+
+        </div>
+        <ul nz-menu [nzTheme]="'dark'" [nzMode]="isCollapsed?'vertical':'inline'">
+            <!-- user菜单 -->
+            <li nz-submenu [nzOpen]="true">
+                <span title><i class="anticon anticon-user"></i><span>用户</span></span>
+                <ul>
+                    <!-- 查看所有管理员用户 -->
+                    <li nz-menu-item [nzSelected]="true" [routerLink]="['./user/all']">查看管理员信息</li>
+                    <!-- 修改管理员密码 -->
+                    <li nz-menu-item [routerLink]="['./user/update']">修改密码</li>
+                </ul>
+            </li>
+            <li nz-submenu>
+                <span title><i class="anticon anticon-cloud"></i><span>IMEI</span></span>
+                <ul>
+                    <div #all>
+                        <li nz-menu-item [routerLink]="['./imei/all']">查看所有IMEI</li>
+                    </div>
+                    <div #add>
+                        <li nz-menu-item [routerLink]="['./imei/add']">增加IMEI</li>
+                    </div>
+                    <!-- <li nz-menu-item [routerLink]="['./imei/remove']">删除IMEI</li> -->
+                    <!-- <li nz-menu-item [routerLink]="['./imei/update']">修改IMEI</li> -->
+                </ul>
+            </li>
+        </ul>
+    </nz-sider>
+    <nz-layout class="full">
+        <!-- 顶部栏 -->
+        <nz-header>
+            <p class="headText">欢迎您 , {{user.username}}</p>
+        </nz-header>
+        <!-- 内容 -->
+        <nz-content class="content">
+            <router-outlet></router-outlet>
+        </nz-content>
+        <!-- 底部栏 -->
+        <nz-footer class="footer">
+    
+        </nz-footer>
+    </nz-layout>
+</nz-layout>

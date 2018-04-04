@@ -1,0 +1,50 @@
+<nz-input 
+    [nzType]="'search'" 
+    [(ngModel)]="searchValue"
+    (nzOnSearch)="search()"
+    [nzPlaceHolder]="'搜索IMEI'"
+></nz-input>
+<div class="users">
+    <nz-table #nzTable [nzDataSource]="data" [nzPageSize]="10" nzBordered [nzLoading]="isLoading">
+        <thead nz-thead>
+            <tr>   
+                <!-- id -->
+                <th nz-th><span>id</span></th>
+                <!-- imei -->
+                <th nz-th><span>IMEI</span></th>
+                <!-- operation -->
+                <th nz-th>
+                    操作
+                </th>
+            </tr>
+        </thead>
+        <tbody nz-tbody>
+            <tr nz-tbody-tr *ngFor="let item of nzTable.data | IMEIPipe:searchValue">
+                <td #id nz-td>{{data.indexOf(item) + 1 || null}}</td>
+                <td #imei nz-td>{{item.imei || null}}</td>
+                <td nz-td>
+                    <a (click)="update(imei.innerText,id.innerText)">修改</a>
+                    <span nz-table-divider></span>
+                    <a (click)="delete(imei.innerText,id.innerText)">删除</a>
+                </td>
+            </tr>
+        </tbody>
+    </nz-table>
+</div>
+
+<!-- modal -->
+<nz-modal
+    [nzVisible]="isVisible" 
+    [nzTitle]="modalTitle" 
+    (nzOnCancel)="handleCancel()" 
+    (nzOnOk)="handleOk()"
+    [nzContent]="modalContent"
+    [nzOkText]="okText"
+    >
+    <ng-template #modalContent>
+        <div *ngIf="!isViewDelete" nz-form-item>
+            <nz-input [(ngModel)]="targetIMEI" [nzPlaceHolder]="'imei号'"></nz-input>
+        </div>
+        <p *ngIf="isViewDelete"><span>是否删除这条imei？</span></p>
+    </ng-template>
+</nz-modal>

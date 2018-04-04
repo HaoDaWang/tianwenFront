@@ -1,0 +1,21 @@
+<form nz-form action="" [formGroup]="form" (ngSubmit)="submit()">
+    <div nz-form-item>
+        <nz-input
+            formControlName="imei"
+            [nzPlaceHolder]="placeholder1"
+            [(ngModel)]="value1"
+            (ngModelChange)="value1Listener()"
+        ></nz-input>
+    </div>
+    <div nz-form-item *ngIf="isViewInput2">
+        <nz-input
+            formControlName="newIMEI"
+            [nzPlaceHolder]="placeholder2"
+            [(ngModel)]="value2"
+            (ngModelChange)="value2Listener()"
+        ></nz-input>
+    </div>
+    <div nz-form-item>
+        <button type="submit" nz-button [nzType]="'primary'">确认</button>
+    </div>
+</form>
